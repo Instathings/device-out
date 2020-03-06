@@ -10,7 +10,8 @@ module.exports = function (RED) {
       const client = mqtt.connect('mqtt://localhost');
       client.on('connect', () => {
         const topic = `zigbee2mqtt/${friendly}/set`;
-        client.publish(topic, JSON.stringify(msg), () => {
+        this.log(config.payload);
+        client.publish(topic, config.payload, () => {
           client.end();
           client.removeAllListeners();
         });
