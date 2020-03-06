@@ -1,0 +1,66 @@
+<script type="text/javascript">
+  RED.nodes.registerType('device out', {
+    oneditprepare: function () {
+      console.log('prepare');
+      $.getJSON('devices', function (data) {
+        console.log(data);
+        const keys = Object.keys(data);
+        keys.forEach((protocol) => {
+          const devices = data[protocol];
+          for (var i = 0; i < devices.length; i++) {
+            const element = devices[i];
+            var value = element.ieeeAddr;
+            var text = `${element.name}`;
+            $('#node-input-friendly').append($("<option></option>").attr("value", value).text(text));
+          }
+        })
+      });
+      // Make sure the selected value is also selected in the <select> tag
+      $('#node-input-friendly').val(this.userValue);
+
+      $('#node-input-payload').typedInput({
+        default: 'json',
+        typeField: $("#node-input-payload"),
+        types: ['json']
+      });
+    },
+    category: 'instathings',
+    color: '#e57373',
+    defaults: {
+      name: {
+        value: '',
+      },
+      friendly: {
+        value: '',
+        required: true,
+      },
+      payload: {
+        value: '',
+        required: true,
+      }
+    },
+    inputs: 1,
+    outputs: 0,
+    icon: "instathings-logo.png",
+    label: function () {
+      return this.name || "Device";
+    }
+  });
+</script>
+<script type="text/html" data-template-name="device out">
+  <div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-friendly"><i class="icon-tag"></i> Friendly name</label>
+    <select id="node-input-friendly"></select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-payload"><i class="icon-tag"></i> Payload</label>
+    <select id="node-input-payload"></select>
+  </div>
+</script>
+<script type="text/html" data-help-name="device out">
+  <p>A node that sends data to control a device.</p>
+</script>
