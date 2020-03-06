@@ -1,5 +1,5 @@
 {
-  "name": "device-out",
+  "name": "@instathings/device-out",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
