@@ -1,6 +1,6 @@
 {
-  "name": "@instathings/device-out",
-  "version": "1.0.1",
+  "name": "@instathings/node-red-contrib-device-out",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,13 @@
       "device-out": "device-out.js"
     }
   },
+  "bugs": {
+    "url": "https://github.com/Instathings/node-red-contrib-device-out/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Instathings/node-red-contrib-device-out.git"
+  },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
@@ -20,5 +27,9 @@
   },
   "dependencies": {
     "mqtt": "^3.0.0"
-  }
+  },
+  "homepage": "https://github.com/Instathings/node-red-contrib-device-out",
+  "keywords": [
+    "node-red"
+  ]
 }
