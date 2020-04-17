@@ -1,15 +1,28 @@
 const mqtt = require('mqtt');
+const fs = require('fs');
 
 module.exports = function (RED) {
   function DeviceOutNode(config) {
     RED.nodes.createNode(this, config);
-    const { friendly } = config;
 
     var node = this;
     node.on('input', function (msg) {
-      const client = mqtt.connect('mqtt://localhost');
+      const client = mqtt.connect('mqtt://eclipse-mosquitto');
       client.on('connect', () => {
-        const topic = `zigbee2mqtt/${friendly}/set`;
+        const splitted = config.friendly.split('|');
+        const protocolId = splitted[0];
+        const friendly = splitted[1];
+        switch (protocolId) {
+          case 'modbus': {
+            protocol = 'modbus';
+            break;
+          }
+          case 'vRy6GTde': {
+            protocol = 'zigbee';
+            break;
+          }
+        }
+        const topic = `${protocol}2mqtt/${friendly}/set`;
         this.log(config.payload);
         client.publish(topic, config.payload, () => {
           client.end();

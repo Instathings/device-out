@@ -1,6 +1,6 @@
 {
   "name": "@instathings/node-red-contrib-device-out",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,9 @@
   },
   "homepage": "https://github.com/Instathings/node-red-contrib-device-out",
   "keywords": [
-    "node-red"
+    "node-red",
+    "zigbee",
+    "modbus",
+    "mqtt"
   ]
 }
